@@ -67,6 +67,18 @@ class Skill extends Model
      */
     protected $dateFormat = 'd-m-Y H:i:s';
 
+    public function skillCompletion()
+    {
+        $skillLessonCount = $this->lessons->count();
+        $skillCompletedLessonCount = $this->lessons->where('watched', true)->count();
+
+        if ($skillLessonCount == 0) {
+            return 0;
+        }
+
+        return $skillCompletedLessonCount / $skillLessonCount * 100;
+    }
+
     /**
      * Skill can have many series.
      *
