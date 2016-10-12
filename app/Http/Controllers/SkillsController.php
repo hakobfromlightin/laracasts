@@ -8,6 +8,7 @@ use App\Http\Requests\StoreSerieRequest;
 use App\Http\Requests\UpdateSkillRequest;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SkillsController extends Controller
 {
@@ -41,7 +42,11 @@ class SkillsController extends Controller
      */
     public function store(StoreSerieRequest $request)
     {
-        $skill = Skill::create($request->all());
+        $imageName = $request->file('image')->store('images');
+
+        $skill = Skill::create(array_merge($request->all(), ['image' => $imageName]));
+
+        $request->session()->flash('success_flash', 'Skill is created!');
 
         return redirect('/skills/' . $skill->id);
     }
@@ -54,7 +59,9 @@ class SkillsController extends Controller
      */
     public function show(Skill $skill)
     {
-        return view('skills.show', compact('skill'));
+        $series = $skill->series;
+
+        return view('skills.show', compact('skill', 'series'));
     }
 
     /**

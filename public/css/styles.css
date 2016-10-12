@@ -1,0 +1,11 @@
+/*.sidebar-left {
+    background-color: white;
+}
+
+.sidebar-left li.active {
+    border-left: 2px solid #2b59ff;
+}*/
+
+ul.dropdown-menu hr {
+    margin: 0;
+}

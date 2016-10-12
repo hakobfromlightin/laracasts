@@ -82,6 +82,23 @@ class Serie extends Model
     protected $dateFormat = 'd-m-Y H:i:s';
 
     /**
+     * Calculates percentage of completion.
+     *
+     * @return float|int
+     */
+    public function completion()
+    {
+        $serieLessonCount = $this->lessons->count();
+        $serieCompletedLessonCount = $this->lessons->where('watched', true)->count();
+
+        if ($serieLessonCount == 0) {
+            return 0;
+        }
+
+        return $serieCompletedLessonCount / $serieLessonCount * 100;
+    }
+
+    /**
      * Serie can have many Lessons.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

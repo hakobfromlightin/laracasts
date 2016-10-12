@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Skill extends Model
 {
@@ -67,7 +68,12 @@ class Skill extends Model
      */
     protected $dateFormat = 'd-m-Y H:i:s';
 
-    public function skillCompletion()
+    /**
+     * Calculates percentage of completion.
+     *
+     * @return float|int
+     */
+    public function completion()
     {
         $skillLessonCount = $this->lessons->count();
         $skillCompletedLessonCount = $this->lessons->where('watched', true)->count();
@@ -77,6 +83,16 @@ class Skill extends Model
         }
 
         return $skillCompletedLessonCount / $skillLessonCount * 100;
+    }
+
+    /**
+     * Show the url for image.
+     *
+     * @return mixed
+     */
+    public function imageUrl()
+    {
+        return Storage::url($this->image);
     }
 
     /**
