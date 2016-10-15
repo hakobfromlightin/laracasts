@@ -79,7 +79,7 @@ class Serie extends Model
      *
      * @var string
      */
-    protected $dateFormat = 'd-m-Y H:i:s';
+    protected $dateFormat = 'Y-m-d H:i:s';
 
     /**
      * Calculates percentage of completion.

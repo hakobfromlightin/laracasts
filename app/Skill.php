@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
@@ -66,7 +67,7 @@ class Skill extends Model
      *
      * @var string
      */
-    protected $dateFormat = 'd-m-Y H:i:s';
+    protected $dateFormat = 'Y-m-d H:i:s';
 
     /**
      * Calculates percentage of completion.
@@ -93,6 +94,56 @@ class Skill extends Model
     public function imageUrl()
     {
         return Storage::url($this->image);
+    }
+
+    /**
+     * Set the start_date attribute.
+     *
+     * @param $date
+     */
+    public function setStartDateAttribute($date)
+    {
+        $this->attributes['start_date'] = Carbon::parse($date);
+    }
+
+    /**
+     * Set the end_date attribute.
+     *
+     * @param $date
+     */
+    public function setEndDateAttribute($date)
+    {
+        $this->attributes['end_date'] = Carbon::parse($date);
+    }
+
+    /**
+     * Set the started_at attribute.
+     *
+     * @param $date
+     */
+    public function setStartedAtAttribute($date)
+    {
+        $this->attributes['started_at'] = Carbon::parse($date);
+    }
+
+    /**
+     * Set the completed_at attribute.
+     *
+     * @param $date
+     */
+    public function setCompletedAtAttribute($date)
+    {
+        $this->attributes['completed_at'] = Carbon::parse($date);
+    }
+
+    /**
+     * Set the deleted_at attribute.
+     *
+     * @param $date
+     */
+    public function setDeletedAtAttribute($date)
+    {
+        $this->attributes['deleted_at'] = Carbon::parse($date);
     }
 
     /**

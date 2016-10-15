@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('/components/datepicker-1.6.4/css/bootstrap-datepicker3.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/series.css') }}">
 @stop
 
@@ -36,7 +35,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
-    <script src="{{ asset('/components/datepicker-1.6.4/js/bootstrap-datepicker.min.js') }}"></script>
-@stop

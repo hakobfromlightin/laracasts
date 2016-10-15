@@ -54,7 +54,7 @@ class Tag extends Model
      *
      * @var string
      */
-    protected $dateFormat = 'd-m-Y H:i:s';
+    protected $dateFormat = 'Y-m-d H:i:s';
 
     /**
      * Tag can belong to many lessons.

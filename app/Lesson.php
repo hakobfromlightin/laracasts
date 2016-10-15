@@ -79,7 +79,7 @@ class Lesson extends Model
      *
      * @var string
      */
-    protected $dateFormat = 'd-m-Y H:i:s';
+    protected $dateFormat = 'Y-m-d H:i:s';
 
     /**
      * Lesson can belong to many Series.

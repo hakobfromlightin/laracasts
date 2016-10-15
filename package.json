@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "awesome-bootstrap-checkbox": "^1.0.0-alpha.4",
-    "font-awesome": "^4.6.3"
+    "bootstrap-datepicker": "^1.6.4",
+    "font-awesome": "^4.6.3",
+    "sweetalert": "^1.1.3"
   }
 }

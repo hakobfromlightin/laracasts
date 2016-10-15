@@ -42,11 +42,31 @@ class SkillsController extends Controller
      */
     public function store(StoreSerieRequest $request)
     {
-        $imageName = $request->file('image')->store('images');
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image = $request->file('image')->store('public/images');
+        }
 
-        $skill = Skill::create(array_merge($request->all(), ['image' => $imageName]));
+        $skill = new Skill();
 
-        $request->session()->flash('success_flash', 'Skill is created!');
+        $skill->name = $request->input('name');
+        $skill->image = @$image ?? null;
+        $skill->description = $request->input('description') != '' ? $request->input('description') : null;
+        $skill->completed = $request->input('completed') != '' ? $request->input('completed') : null;
+        $skill->times_completed = $request->input('times_completed') != '' ? $request->input('times_completed') : null;
+        if ($request->input('started_at') != '') {
+            $skill->started_at = $request->input('started_at');
+        }
+        if ($request->input('completed_at') != '') {
+            $skill->completed_at = $request->input('completed_at');
+        }
+
+        if(!$skill->save()){
+            Session::flash('error_flash', 'Something went wrong!');
+
+            return back();
+        }
+
+        Session::flash('success_flash', 'Skill is created!');
 
         return redirect('/skills/' . $skill->id);
     }
@@ -84,7 +104,25 @@ class SkillsController extends Controller
      */
     public function update(UpdateSkillRequest $request, Skill $skill)
     {
-        $skill->update($request->all());
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image = $request->file('image')->store('public/images');
+        }
+
+        $skill->name = $request->input('name') != '' ? $request->input('name') : null;
+        $skill->image = $image ?? null;
+        $skill->description = $request->input('description') != '' ? $request->input('description') : null;
+        $skill->completed = $request->input('completed') != '' ? $request->input('completed') : null;
+        $skill->times_completed = $request->input('times_completed') != '' ? $request->input('times_completed') : null;
+        $skill->started_at = $request->input('started_at') != '' ? $request->input('started_at') : null;
+        $skill->completed_at = $request->input('completed_at') != '' ? $request->input('completed_at') : null;
+
+        if (!$skill->save()) {
+            Session::flash('error_flash', 'Something went wrong!');
+
+            return back();
+        }
+
+        Session::flash('success_flash', 'Skill is updated!');
 
         return redirect('skills/' . $skill->id);
     }
@@ -98,6 +136,8 @@ class SkillsController extends Controller
     public function destroy(Skill $skill)
     {
         $skill->delete();
+
+        Session::flash('success_flash', 'Skill is deleted!');
 
         return redirect('/skills');
     }
