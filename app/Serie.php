@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Serie extends Model
 {
@@ -96,6 +97,16 @@ class Serie extends Model
         }
 
         return $serieCompletedLessonCount / $serieLessonCount * 100;
+    }
+
+    /**
+     * Show the url for image.
+     *
+     * @return mixed
+     */
+    public function imageUrl()
+    {
+        return Storage::url($this->image);
     }
 
     /**

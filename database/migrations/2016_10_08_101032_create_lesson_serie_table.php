@@ -29,8 +29,6 @@ class CreateLessonSerieTable extends Migration
                 ->references('id')
                 ->on('series')
                 ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 

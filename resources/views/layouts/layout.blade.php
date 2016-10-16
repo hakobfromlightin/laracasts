@@ -30,8 +30,6 @@
         </div>
     </nav>
 
-{{--    @include('layouts.partials.navbar_left')--}}
-
     @include('layouts.partials.flash_data')
 
     @yield('content')

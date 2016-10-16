@@ -43,7 +43,7 @@ class SkillsController extends Controller
     public function store(StoreSerieRequest $request)
     {
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $image = $request->file('image')->store('public/images');
+            $image = $request->file('image')->store('public/images/skills');
         }
 
         $skill = new Skill();
@@ -105,7 +105,7 @@ class SkillsController extends Controller
     public function update(UpdateSkillRequest $request, Skill $skill)
     {
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $image = $request->file('image')->store('public/images');
+            $image = $request->file('image')->store('public/images/skills');
         }
 
         $skill->name = $request->input('name') != '' ? $request->input('name') : null;

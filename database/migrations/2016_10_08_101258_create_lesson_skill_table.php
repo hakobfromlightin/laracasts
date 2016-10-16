@@ -27,8 +27,6 @@ class CreateLessonSkillTable extends Migration
                 ->references('id')
                 ->on('skills')
                 ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 

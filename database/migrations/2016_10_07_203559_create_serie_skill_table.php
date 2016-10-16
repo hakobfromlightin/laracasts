@@ -15,6 +15,7 @@ class CreateSerieSkillTable extends Migration
     {
         Schema::create('serie_skill', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('number')->unsigned()->index();
 
             $table->integer('serie_id')->unsigned()->index();
             $table->foreign('serie_id')
@@ -27,8 +28,6 @@ class CreateSerieSkillTable extends Migration
                 ->references('id')
                 ->on('skills')
                 ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 
