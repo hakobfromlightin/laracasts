@@ -8,7 +8,8 @@ window._ = require('lodash');
  */
 
 window.$ = window.jQuery = require('jquery');
-require('bootstrap-sass');
+window.Waves = require('node-waves');
+require('mdbootstrap/js/mdb');
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -33,7 +34,7 @@ Vue.http.interceptors.push((request, next) => {
 
 require('sweetalert/lib/sweetalert');
 
-require('bootstrap-datepicker/js/bootstrap-datepicker');
+// require('bootstrap-datepicker/js/bootstrap-datepicker');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
