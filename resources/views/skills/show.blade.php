@@ -2,6 +2,12 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('/css/skills.css') }}">
+    <style>
+        .card-block {
+            height: 90px;
+            overflow: hidden;
+        }
+    </style>
 @stop
 
 @section('content')

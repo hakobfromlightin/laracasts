@@ -52,6 +52,7 @@
                         <img src="http://mdbootstrap.com/images/proffesions/slides/socialmedia/img%20(2).jpg"
                              class="img-fluid " alt="">
                         <div class="mask">
+                            You've been clicked punk
                         </div>
                     </div>
                     <br>

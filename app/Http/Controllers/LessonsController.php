@@ -21,7 +21,7 @@ class LessonsController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::all();
+        $lessons = Lesson::latest()->get();
 
         return view('lessons.index', compact('lessons'));
     }

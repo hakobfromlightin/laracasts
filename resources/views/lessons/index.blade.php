@@ -6,16 +6,36 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">All Lesson</div>
-
-                    <div class="panel-body">
-                        Show All Lessons.
-                    </div>
-                </div>
-            </div>
-        </div>
+        <lessons :list="my_lessons"></lessons>
     </div>
-@endsection
+
+    <template id="lessons-template">
+        <div>
+            <h1>My Lessons</h1>
+
+            <ul class="list-group" v-for="lesson in list">
+                <li class="list-group-item">
+                    @{{ lesson.name }}
+                </li>
+            </ul>
+        </div>
+    </template>
+@stop
+
+@section('scripts')
+    <script>
+
+        Vue.component('lessons', {
+            template: '#lessons-template',
+        });
+
+        var data = {
+            my_lessons: JSON.parse('{!! json_encode($lessons) !!}')
+        };
+
+        var vm = new Vue({
+            el: '#app',
+            data: data
+        });
+    </script>
+@stop

@@ -21,3 +21,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Lesson::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'times_watched' => 0,
+        'times_coded' => 0,
+        'type' => 'single',
+        'archived' => false,
+        'available' => true,
+        'downloaded' => true,
+        'watched' => false,
+        'coded' => false,
+    ];
+});
